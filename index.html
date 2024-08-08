@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,27 +9,89 @@
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
+            background-color: #005151;
+            color: white;
         }
+
         #fileInput {
             margin-bottom: 20px;
         }
+
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
         }
-        table, th, td {
+
+        table,
+        th,
+        td {
             border: 1px solid black;
         }
-        th, td {
+
+        th,
+        td {
             padding: 10px;
             text-align: left;
         }
+
         th {
             background-color: #f2f2f2;
         }
+
+        tr {
+            background-color: lightgrey;
+            color: black;
+        }
+
+        button {
+            align-items: center;
+            background-color: #0A66C2;
+            border: 0;
+            border-radius: 100px;
+            box-sizing: border-box;
+            color: #ffffff;
+            cursor: pointer;
+            display: inline-flex;
+            font-family: -apple-system, system-ui, system-ui, "Segoe UI", Roboto, "Helvetica Neue", "Fira Sans", Ubuntu, Oxygen, "Oxygen Sans", Cantarell, "Droid Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Lucida Grande", Helvetica, Arial, sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            justify-content: center;
+            line-height: 20px;
+            max-width: 480px;
+            min-height: 40px;
+            min-width: 0px;
+            overflow: hidden;
+            padding: 0px;
+            padding-left: 20px;
+            padding-right: 20px;
+            text-align: center;
+            touch-action: manipulation;
+            transition: background-color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, box-shadow 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+            user-select: none;
+            -webkit-user-select: none;
+            vertical-align: middle;
+        }
+
+        button:hover,
+        button:focus {
+            background-color: #16437E;
+            color: #ffffff;
+        }
+
+        button:active {
+            background: #09223b;
+            color: rgb(255, 255, 255, .7);
+        }
+
+        button:disabled {
+            cursor: not-allowed;
+            background: rgba(0, 0, 0, .08);
+            color: rgba(0, 0, 0, .3);
+        }
     </style>
 </head>
+
 <body>
     <h1>Known Place Data Table</h1>
     Please export "Known Places" through SDM and extract the "response.json" file for upload.
@@ -39,7 +102,7 @@
     <div id="tableContainer"></div>
 
     <script>
-        document.getElementById('processButton').addEventListener('click', function() {
+        document.getElementById('processButton').addEventListener('click', function () {
             const fileInput = document.getElementById('fileInput');
             if (fileInput.files.length === 0) {
                 alert('Please select a JSON file.');
@@ -49,7 +112,7 @@
             const file = fileInput.files[0];
             const reader = new FileReader();
 
-            reader.onload = function(event) {
+            reader.onload = function (event) {
                 try {
                     const jsonData = JSON.parse(event.target.result);
                     const knownPlaces = jsonData.itemsRetrieveResponses.map(item => item.responseObjectNode.knownPlace);
@@ -112,4 +175,5 @@
         }
     </script>
 </body>
+
 </html>
